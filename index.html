@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Mis turnos</title>
+
+<!-- Icono / Pantalla de inicio (todo embebido, sin archivos externos) -->
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Mis%20turnos%22%2C%22short_name%22%3A%22Mis%20turnos%22%2C%22description%22%3A%22Organiza%20tus%20turnos%20de%20trabajo%20de%20forma%20visual%22%2C%22start_url%22%3A%22./%22%2C%22scope%22%3A%22./%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23ffffff%22%2C%22theme_color%22%3A%22%233F51B5%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage/png%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAF/ElEQVR4nO3dvY4cRRiF4VrkgCsgJbJkiRwybIkMC5n1LQAZl0MG3IIXZNkZkk0GORISEcEmXAHZEjXaHe9MV3fV9zfnfSJE0F9p55yq7tn1TGsAAAAAAAAAcNYuohewxePLVzfRa0Cft1dPS2Qr7SIJ%2B/nJWIpUCyL0OrKUIcUiCL6u6CKEDif4WEQVIWQowccx3kVwHUbw0curCO95DGmN8GMbr7yYt4zgY5TlaWB6AhB%2BzGCZI7MCEH7MZJUnkwIQfliwyNX0AhB%2BWJqdr6kFIPzwMDNn0wpA%2BOFpVt6mFIDwI8KM3A0XgPAj0mj%2BhgpA%2BJHBSA7d/hQCyGh3Adj9kcnePO4qAOFHRntyyS0QpG0uALs/MtuaT04ASNtUAHZ/VLAlp5wAkNZdAHZ/VNKbV04ASOsqALs/KurJLScApFEASFstALc/qGwtvw%2B8FhLtr9%2B%2B%2Bf%2B/H37yfeBK8lL8GZ19AW6/qIf/T%2BVFXqP8M%2BIZANLCToD7dh3FNWTn%2BTOKOG1OngA8AOMcnMoxt0CQRgEgjQJAGgWANAoAaRQA0igApFEASKMAkEYBII0CQBoFgDQKAGkUANIoAKRRAEijAJBGASCNAkAaBYA0CgBpFADSwj4X6Pr6Omo0knry/LX7TE4ASKMAkEYBII0CQBoFgDQKAGkUANIoAKRRAEir/R1hv75vc91P/x2/xrcfj1/j0He/D1/ii58uJyzkXS%2B/vDK5rrWaBbAK/uH19xTBIviH195RBKvgH16/WhHq3QJZh39klmX4B%2BZYhz9q1gy1CuAZ/q0zvcK/cV5EICuVoE4BIsLfO9s7/J1zI4NYpQR1CgAYqFGAyN1/bQ1Ru//K/Aw7cIY1rKlRAMAIBYA0CgBpFADSKACkUQBIowCQRgEgjQJAGgWANAoAaRQA0igApFEASKMAkEYBII0CQBoFgDQKAGkUANIoAKTVKMCMz%2Bq0WsOEz%2BsccmR%2Bho8ozLCGNTUKABipU4DIU2BtdtQpsDI3cgeusPu3VqkArcWUoHemdwk650UEsUr4W6tWgNZ8S7B1llcJNs7xDGSl8LdW9fsBlmBm/IKMJZzJviBjCSZfkHFXzQIsMrw7dEz0u0NHVA2qlXq3QMBEFADSKACkUQBIK/0QfPHLHybXvfnso%2BFr/Pjo5wkrueurP58NX%2BOfD7%2BesJJ3ffD3DybXtVayAFbBP7z%2BniJYBP/w2nuKYBX8w%2BtXK0K5WyDr8I/Msgz/yBzr8EfNmqFUATzDv3WmV/i3zosIZKUSlClARPh7Z3uHv3duZBCrlKBMAQALJQoQufuvrSFq91%2Bbn2EHzrCGNSUKAFihAJBGASCNAkAaBYA0CgBpFADSKACkUQBIowCQRgEgjQJAGgWANAoAaRQA0igApFEASKMAkEYBII0CQFqJAsz4qEKrNcz4uMIRx%2BZn%2BIS2DGtYU6IAgJUyBYg8BdZmR50Ca3Mjd%2BAKu39rhQrQWkwJemd6l6B3XkQQq4S/tWIFaM23BFtneZVg6xzPQFYKf2tFPx59CWbG7wdYwpnt%2BwGWYPL9AHeVLMAiw7tDx0S/O3RM1aBaKXcLBMx0sgBvr55eeC0EsHIqx5wAkEYBII0CQFpYAZ48fx01GglF5WG1ADwIo7K1/HILBGmhBeA2CK3F5qCrANwGoaKe3IbfAnEKaIt%2B/bsLYHkKRP8QEMPyde/Na/gJsKAEWrK83psKYP0skOWHAlvWr/OWnKY5ARaU4Lxle3137eiPL1/dzF7Ifd68%2BNxjDBx4BX/rXUrqfxBz%2B4dGGerJttvfZ/c9vdcpAPTa84y6%2BxmAX44hk715TPcQDHgaKgCnADIYyeHwCUAJEGk0f1NugSgBIszI3bRnAEoAT7PyNvUhmBLAw8ycTX8XiBLA0ux8mbwNSglgwSJXZr8HoASYySpPpr8IowSYwTJHbgHlb4ewlccG6vanEJwG2MIrLyGh5DTAMd4bZeiuTBGwiLpDSHFbQhF0Rd8apyjAgiLoiA7%2BIsUi7kMZzk%2BW0N%2BWbkGnUIo6MoYdAAAAAAAAqv4DzsHLsgTE/ysAAAAASUVORK5CYII%3D%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image/png%22%2C%22purpose%22%3A%22any%20maskable%22%7D%2C%7B%22src%22%3A%22data%3Aimage/png%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAARnklEQVR4nO3dv44lxRnG4V5rA66AlMgSEjnOwBKZLQTrWwBnXA6Z4RZYEIIMCZOZHAnJEQEJV0C2DqzRnj2cmTl/qrqqvvd5Upt1z9cz/f26zizeNgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKjpyegLYB/vPvvmxehrANbx7%2Bd/tx%2BKc4OLsOCBPQmE9bmBC7LsgRmJgrW4WQuw8IEVCYK5uTkTsvCBigTBXNyMSVj6QBIxMJ4bMJClDyAGRjH0nVn6APcTA/sx6J1Y/ADnEwL9GXBHlj7A7cRAH4bagcUP0J4QaMswG7L4AfoTAm0YYgMWP8D%2BhMBtDO8GFj/AeELgOoZ2BYsfYD5C4DJ/Gn0Bq7H8Aebk%2BXwZtXQm31gA63Aa8DgDeoTFD7AuIXA/HwE8wPIHWJvn%2BP2U0Qm%2BYQDqcRrwKicARyx/gJo8318lAA745gCozXP%2BJcchm28IgETpHwnEnwBY/gCZ0p//0QGQfvMB0iXvgcjjj%2BQbDsBpaR8JxJ0AWP4AnJK2H6ICIO3mAnCZpD0REwBJNxWA66Xsi4gASLmZALSRsDfKB0DCTQSgver7o3QAVL95APRVeY%2BUDYDKNw2A/VTdJyUDoOrNAmCMinulXABUvEkAjFdtv5QKgGo3B4C5VNozZQKg0k0BYF5V9k2JAKhyMwBYQ4W9s3wAVLgJAKxn9f2zdACsPnwA1rbyHlo2AFYeOgB1rLqPlgyAVYcNQE0r7qUlAwAAuM1yAbBiZQFQ32r7aakAWG24AGRZaU8tEwArDRWAXKvsq2UCAABoZ4kAWKWmAGDb1thb0wfACkMEgGOz76%2BpA2D24QHAQ2beY1MHAADQx7QBMHM1AcC5Zt1nUwbArMMCgGvMuNemDAAAoK/pAmDGSgKAW82236YLAACgv6kCYLY6AoCWZtpz0wTATEMBgF5m2XfTBAAAsJ8pAmCWGgKAPcyw96YIAABgX8MDYIYKAoC9jd5/wwMAANjf0AAYXT8AMNLIPegEAAACDQsAb/8AMG4fOgEAgEBDAsDbPwC8NGIvOgEAgEACAAAC7R4Ajv8B4I/23o9OAAAg0K4B4O0fAO635550AgAAgQQAAATaLQAc/wPA4/bal04AACCQAACAQLsEgON/ADjfHnvTCQAABBIAABCoewA4/geAy/Xen097/uFw6L//%2Bee9/9mf//KvHa8ExvPzwGgCgO4eetAd/3c8%2BKjOzwOzEAB0c86D7r5/xoOPavw8MJuuvwPg8/9c1zzsWv7zMBM/D1yr5x71twBortXDykOPCvw8MCsBQFOtH1IeeqzMzwMzEwAAEKhbAPj8P0%2BvtxNvPazIzwOt9NqnTgAAIJAAoInebyXeeliJnwdW4N8D0IAfxn2YM7zk58G/H%2BFWTgAAIFCXAPALgADQTo%2B96gQAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgUPMA8O8AAID2Wu9XJwAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgZ6OvoAKfv3119GXABDnr//4dvQlLM0JAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgZ6OvgAG%2B%2BG10VfQ1ju/j76CNj55e/QVtPfpj6OvoIn3v3w2%2BhKa%2BvrD56MvgUEEQKJqS//Q4de2WgxUXPqHDr%2B%2BxWKg2tI/dPi1iYEsAiBJ5cV/yt3XO3sIVF/8p9x9zZOHQOXFf8rd1ysEMgiABGmL/9isIZC4%2BI9NGgJpi/%2BYEMjglwCrS1/%2Bh2aaheX/qonmkb78D5lFbQKgqh9em2vhzWL0TD55e6plN5XBc3n/y2cW3glmUpcAqGj0kpvdqDiy%2BB83KJAsuYeJo5oEQDWW//n2nJXlf5kd52Wxnc%2BsahEAABBIAFTi7f9ye8zM2/91dpibN9rLmVkdAqAKy/96PWdn%2Bd%2Bm4/wssuuZXQ0CAAACCYAKvP3frscMvf230WGO3mBvZ4brEwAAEEgArM7bfzstZ%2Bntv62G8/Tm2o5Zrk0AAEAgAQAAgQTAyhz/t9dipo7/%2B2gwV0fW7ZnpugQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABsLJ3fh99BfW0mOmnP97%2BZ/BHDeb69YfPG1wIh8x0XQIAAAIJAAAIJABW52OAdlrO0scAbTWcpyPrdsxybQIAAAIJgAqcAtyuxwydArTRYY7eXG9nhusTAAAQSABU4RTgej1n5xTgNh3n5w32emZXgwCoRARcbo%2BZiYDr7DA3i%2BxyZlaHAKhGBJxvz1mJgMvsOC8L7XxmVYsAIJNQmpdYmpLlX48AqMhye9io%2BVhsjxs0I8vtYeZTkwCo6p3fhcApo2fy6Y9C4D6D5/L1h88tuhPMpC4BUN3ohTeTmWYhAl410TwsvJfMoranoy%2BAHdwtvh9eG3sdo8y0%2BA/dLb1P3h57HSNNtPgP3S2%2B9798NvhKxrD4MwiAJGkhMOviP5YYApMu/mNpIWDxZxEAiQ4XY7UYWGXpn3K4FCvGwCJL/5TDxVgtBiz9XAIg3coLs7KFl2V1FiZV%2BCVAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEBPR18AYz357qfRl9DUi/feGn0JTXz%2B5lejL6G5j37%2BYPQlNPHbGx%2BPvoSmXv/ls9GXwCACIFC1pX/o8GtbLQYqLv1Dh1/fajFQbekfOvzaxEAWARCk8uI/5e7rnT0Eqi/%2BU%2B6%2B5tlDoPLiP%2BXu6xUCGQRAgLTFf2zWEEhc/MdmDYG0xX9MCGTwS4DFpS//QzPNwvJ/1UzzSF/%2Bh8yiNgFQ1JPvfppq4c1i9Ew%2Bf/OrqZbdTEbP5bc3PrbwTjCTugRAQaOX3OxGxdHoBbeCUYFkyT1MHNUkAIqx/M%2B356ws/8vsOS%2BL7XxmVYsAAIBAAqAQb/%2BX22Nm3v6vs8fcvNFezszqEABFWP7X6zk7y/82PednkV3P7GoQAAAQSAAU4O3/dj1m6O2/jR5z9AZ7OzNcnwAAgEACYHHe/ttpOUtv/221nKc313bMcm0CAAACCQAACCQAFub4v70WM3X830eLuTqybs9M1yUAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAW9uK9t0ZfQjktZvrRzx80uBKOtZjr67981uBKOGSm6xIAABBIAABAIAGwOB8DtNNylj4GaKvlPB1Zt2OWaxMAABBIABTgFOB2PWboFKCNHnP05no7M1yfAACAQAKgCKcA1%2Bs5O6cAt%2Bk5P2%2Bw1zO7GgRAISLgcnvMTARcZ4%2B5WWSXM7M6BEAxIuB8e85KBFxmz3lZaOczq1oEAJGE0rzE0pws/3oEQEGW28NGzcdie9yoGVluDzOfmgRAUS/ee0sInDB6Jh/9/IEQuMfoubz%2By2cW3QlmUpcAKG70wpvJTLMYvexmM9M8LLyXzKK2p6MvgP7uFt%2BT734afCVjzLT4D90tvc/f/GrwlYwz0%2BI/dLf4fnvj48FXMobFn0EABEkLgVkX/7HEEJh18R9LCwGLP8uTHn/ou8%2B%2BedHjz53V91/8bfQlXK1aDKyy9B9TMQZWWfqPqRYDKy/9v/7j29GXsKt/P/97053tBCBclYVZTZVlWdHKCxMO%2BSVAAAgkAAAgkAAAgEACAAACCQAACCQAACBQlwBo/XcVASBZj73qBAAAAgkAAAgkAAAgkAAAgEDdAsAvAgLA7XrtUycAABBIAABAIAHQQNr/JzXAaJ67t%2BsaAH4PAACu13OPOgEAgEACAAACCYBGfB4FsA/P2za6B4DfAwCAy/Xen04AACCQAGjIsRRAX56z7ewSAD4GAIDz7bE3nQAAQCAB0JjjKYA%2BPF/b2i0AfAwAAI/ba186AehApQK05bnangAAgEC7BkDSxwBqFaCNpOfpnnvSCUBHSd%2B0AD14jvazewAknQIAwLn23o9OADpTrwDX8fzsSwDswDcxwGU8N/sbEgCJHwP4ZgY4T%2BLzcsRedAIAAIGGBYBTAACOJT4nR%2B1DJwA7S/zmBjiH5%2BO%2BhgZA4inAtvkmBziW%2BlwcuQefjvofTnf3zf79F38bfCUA46Qu/hkM/wgg9RTgjm9%2BIFX682/0/hseAPghAPJ47o03zdv3u8%2B%2BeTH6GmbgIwGgMov//0a//W%2BbE4Dp%2BOEAqvJ8m8vwAjnkFOBVTgOACiz%2BV83w9r9tkwXAtomAU4QAsCKL/49mWf7b5q8BLuHwh0gMADOz9NcxTYkccgpwHjEAzMDSP89Mb//b5gRgacc/dIIA2IOFX8NUNXLIKQAAVcz29r9tE/81wBmHBQCXmnWfTRsAAEA/UwfArNUEAOeYeY9NHQDbNvfwAOA%2Bs%2B%2Bv6QNg2%2BYfIgAcWmFvLREAAEBbywTACjUFAKvsq2UCYNvWGSoAmVbaU0sFwLatNVwAcqy2n5YLAADgdksGwGqVBUBtK%2B6lJQNg29YcNgD1rLqPlg2AbVt36ADUsPIeWjoAtm3t4QOwrtX3z/IBsG3r3wQA1lJh75QIgG2rcTMAmF%2BVfVMmALatzk0BYE6V9kypANi2WjcHgHlU2y/lAmDb6t0kAMaquFdKBsC21bxZAOyv6j4pGwDbVvemAbCPynukdABsW%2B2bB0A/1fdH%2BQDYtvo3EYC2EvZGRABsW8bNBOB2KfsiJgC2LeemAnCdpD0RFQDblnVzAThf2n6I%2BmKPvfvsmxejrwGAsdIW/524E4BDqTcdgP9L3gPRAbBt2TcfIFn68z/6iz/mIwGA%2BtIX/534E4BDvikAavOcf0kAHPHNAVCT5/urDOMBPhIAWJ/Ff5oTgAf4pgFYm%2Bf4/QzmTE4DANZh8T/OgC4kBADmZfGfz0cAF/LNBTAnz%2BfLGNYNnAYAjGfxX8fQGhACAPuz%2BG9jeA0JAYD%2BLP42DLEDIQDQnsXflmF2JAQAbmfx92GoOxEDAOez9Psz4J0JAYD7Wfz7MeiBxACApT%2BKoU9CDABJLP3x3IAJiQGgIkt/Lm7GAgQBsCILf25uzoIEATAjC38tblYRogDYk2W/PjcwhEAALmHBAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABF/A%2BNEpIfcKI4YQAAAABJRU5ErkJggg%3D%3D%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image/png%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABNUlEQVR4nGNgGGDAiEvCPnDrf2pbdnC9N4Z9GAK0sBifQ5jobTm6PUzYBOnpCCZCCmkNGBkY6O97ZMCCTfD2yVSaWahqPhuFP+BRMOoArGng6dOnEMYhDkxJux8QOscMU27KKQYGBgYG3w2BGFKbA9YzMDAwMDgEbUMRxx0C2CyHiWOzHOoobJbjchR+B9AJjDpgEDsAltqxiUNTOwaYcgqe2tEBLnGs2RAGGH+fxRCDVRpz91RjyCXD5PKFMQ0LwG4HzhBg3HsVp/hcjY1Y5eZqbGR4JZ+CVQ6X+CBOA6MOGGgH/HfWximefMMfq1zyDX8GsYdzsMrhEsebDXE5AmYZLoDLMmxgcEQBeo8Fvc6mFkA39+B6b0acUUArR6ADeBRg67fREsDsY8ImSC/LGRgGQe8YACdBXshk6Us+AAAAAElFTkSuQmCC">
+<link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAFnElEQVR4nO3cva5UVRiH8XWMhVdAa2ViQq8dkNBJDBxuAe28HDrxFjgaAp2J2ElvQmJFcRqvgO5YmJHRuGevr/dj/ef5VYRk1tqZ/czLZs85uxQAAAAAAAAAyVxEH8Ceu5cvb6KPAf/2+upB2m7SHRgBrydT4CkOhIh1RMcdtjkR64uI231DQj4/nmF/5LVRKcR8rjzPu8snh5BxYD2tzSc0MeOYdQ9mnxZCxh6LaW0yoYkZNSw6mR40MaPF7F6mBk3M6DGzm2lBEzNGzOpnStDEjBlmdDQcNDFjptGehoImZlgY6cr1q2/AWnfQTGdY6u2rK2hihoeezrjkgJTmoJnO8NTaW1PQxIwILd1xyQEp1UEznRGptj8mNKQQNKRUBc3lBjKo6ZAJDSkEDSm7v6S46uXGH799+8+fP/vy+8AjyUPlPTn1y7Ufex6Ih+OT9t+/W/kkjjin94RLDkhxn9D/Ny3OYe+sPN4Tz38FTk7oVa+foe1Ul1xyQApBQwpBQwpBQwpBQwpBQwpBQwpBQwpBQwpBQwpBQwpBQwpBQwpBQwpBQwpBQwpBQwpBQwpBQwpBQ4r7b31fX197b4lg9x6/ctuLCQ0pBA0pBA0pBA0pBA0pBA0pBA0pBA0paz3w/NdP5q955/3Y67/7Ys5xHDx9M/Tyr3+8nHQgH7x4dDV9TSvrTGiLmA/r9q49O+bDmp3rWsR8WNdq7dnyBz0SXOs+tQaia9qjkldwK0SdP2hPHh+cFtYfmg7Zo84ddERge3t6R7azX0RgmaPOG3TktNzaO2pibuwbGVbWqPMGDXQgaEghaEghaEghaEghaEghaEghaEghaEghaEghaEghaEghaEghaEghaEghaEghaEghaEghaEghaEjJG/ToE40s9h58qlG3jX0jn2iU9WlKeYMGOuQOOmJK7+3pPaV39ouYlFmncynZgy7FN+ravbyirtzHM7DMMZeyQtCl+ETduod11I3re4SWPeZSVgm6FLuo77zvX9si6qdvute1Cu7Fo6slYi5ltedDR9752BJ152PDKuFZWWdCAxUIGlIIGlIIGlKW+k/hxc+/T1/z5v7todf/8PlPk47kb0/ePhx6/Z+ffjPpSD649e7Z9DWtLDOhLWI+rNu79uyYD2v2rmsR82Fdq7VnSx/0SHCt+9Qaia5lj1pewa0QdfqgPXl8cFpYf2h6ZI86ddARge3t6R3Z3n4RgWWOOm3QkdNya++oibm1b2RYWaNOGzTQg6AhhaAhhaAhhaAhhaAhhaAhhaAhhaAhhaAhhaAhhaAhhaAhhaAhhaAhhaAhhaAhhaAhhaAhJW3Qow+Asdh79CEwvbb2jXwATNaHz6QNGuiROuiIKb23p/eU3tsvYlJmnc6lJA+6FN+oa/fyirp2H8/AMsdcygJBl+ITdese1lG3ru8RWvaYS1kk6FLsor65f7t7bYuon7x92L2uVXC33j1bIuZSFnucbuSdjy1Rdz62rBKelWUmNFCDoCHlZNCvrx5ceB0IUOtUl0xoSCFoSHEP+t7jV95bIpD3+d4NmutoZLLXI5cckBISNJcd5yHiPFcFbXHZQdTaLM5vTYdcckBKaNBMaU2R57U6aKu7HUStxep81vaX4qftDm/CL8+/Cj4S9MoymJouOazvSWd5U9DG+ry1dNcV6N3Llzc9r2vFxM7La/i0DtEUlxxbmNho1XWXg6/D4aGns+7bdkQNS7198cUKpAwFzZSGhZGuhic0UWOm0Z6mXHIQNWaY0dG0a2iixohZ/Uz9TyFRo8fMbqbf5SBqtJjdi8ltO6JGDYtOzMPz+rkPrMNy4Jl/scK0xjHrHlxjY1qfL6/B5vrVN9P6PHme97DAmNb6IgZYiolJ3Dqi/xVOEfQx4l5PdMTH0hzIFgLPJ1PAAAAAAAAAmv4ChdW5PNHUy6UAAAAASUVORK5CYII=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Mis turnos">
+<meta name="theme-color" content="#3F51B5">
+<style>
+  :root {
+    --bg: #ffffff;
+    --ink: #1a1a1a;
+    --muted: #999999;
+    --border: #ececec;
+    --border-soft: #f5f5f5;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Inter, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+  }
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 24px 16px 64px;
+  }
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .header h1 {
+    font-size: 26px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.5px;
+  }
+  .header p {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .today-btn {
+    border: 1px solid var(--border);
+    background: #fafafa;
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #333;
+  }
+  .month-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .nav-btn {
+    border: 1px solid var(--border);
+    background: #fff;
+    border-radius: 10px;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #333;
+    font-size: 18px;
+    line-height: 1;
+  }
+  .month-title {
+    font-size: 19px;
+    font-weight: 700;
+    text-transform: capitalize;
+  }
+  .weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  .weekdays div {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+    padding: 4px 0;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+  }
+  .day {
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: transform 0.08s ease;
+  }
+  .day:active { transform: scale(0.94); }
+  .day.today { border: 2px solid var(--ink); }
+  .day.empty { visibility: hidden; pointer-events: none; }
+
+  .legend-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin: 28px 0 10px;
+  }
+  .legend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 8px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 8px;
+    transition: background 0.1s ease;
+  }
+  .legend-item:hover {
+    background: var(--border-soft);
+  }
+  .swatch {
+    width: 16px;
+    height: 16px;
+    border-radius: 5px;
+    flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .legend-row {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+  }
+  .legend-count {
+    color: #aaa;
+    font-weight: 600;
+  }
+
+  .totals-section {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .totals-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 10px;
+  }
+  .totals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 8px;
+  }
+  .total-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: var(--border-soft);
+  }
+  .total-card .swatch {
+    width: 18px;
+    height: 18px;
+  }
+  .total-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  .total-label {
+    font-size: 12px;
+    color: #777;
+  }
+  .total-count {
+    font-size: 17px;
+    font-weight: 800;
+  }
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 50;
+  }
+  .overlay.open { display: flex; }
+  .sheet {
+    background: #fff;
+    width: 100%;
+    max-width: 480px;
+    border-radius: 20px 20px 0 0;
+    padding: 20px 18px 28px;
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.15);
+  }
+  .sheet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .sheet-header div {
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: capitalize;
+  }
+  .close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #999;
+    font-size: 22px;
+    line-height: 1;
+    padding: 0;
+  }
+  .cat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .cat-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 10px;
+    font-size: 13.5px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: left;
+  }
+  .clear-btn {
+    margin-top: 10px;
+    width: 100%;
+    background: #f5f5f5;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    display: none;
+  }
+  .clear-btn.show { display: block; }
+
+  /* Selector de color de categoría */
+  .color-sheet {
+    background: #fff;
+    width: 100%;
+    max-width: 480px;
+    border-radius: 20px 20px 0 0;
+    padding: 20px 18px 24px;
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.15);
+  }
+  .color-sheet-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .color-sheet-header .cur-swatch {
+    width: 24px;
+    height: 24px;
+    border-radius: 7px;
+    border: 1px solid rgba(0,0,0,0.1);
+    flex-shrink: 0;
+  }
+  .color-sheet-header .label {
+    font-weight: 700;
+    font-size: 15px;
+    flex: 1;
+  }
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .palette-swatch {
+    aspect-ratio: 1 / 1;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+  }
+  .palette-swatch.selected::after {
+    content: "✓";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.95);
+    font-size: 14px;
+    font-weight: 800;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+  }
+  .custom-color-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+  }
+  .custom-color-row label {
+    font-size: 13px;
+    color: #666;
+    flex: 1;
+  }
+  .custom-color-row input[type="color"] {
+    width: 42px;
+    height: 32px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2px;
+    cursor: pointer;
+    background: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="header">
+    <div>
+      <h1>Mis turnos</h1>
+      <p>Toca un día para asignarle una categoría</p>
+    </div>
+    <button class="today-btn" id="todayBtn">Hoy</button>
+  </div>
+
+  <div class="month-nav">
+    <button class="nav-btn" id="prevBtn" aria-label="Mes anterior">‹</button>
+    <div class="month-title" id="monthTitle"></div>
+    <button class="nav-btn" id="nextBtn" aria-label="Mes siguiente">›</button>
+  </div>
+
+  <div class="weekdays">
+    <div>Lun</div><div>Mar</div><div>Mié</div><div>Jue</div><div>Vie</div><div>Sáb</div><div>Dom</div>
+  </div>
+
+  <div class="grid" id="calendarGrid"></div>
+
+  <div class="legend-title">Categorías</div>
+  <div class="legend-grid" id="legendGrid"></div>
+
+  <div class="totals-section">
+    <div class="totals-title">Total acumulado (desde siempre)</div>
+    <div class="totals-grid" id="totalsGrid"></div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="sheet">
+    <div class="sheet-header">
+      <div id="sheetDate"></div>
+      <button class="close-btn" id="closeBtn">&times;</button>
+    </div>
+    <div class="cat-grid" id="catGrid"></div>
+    <button class="clear-btn" id="clearBtn">Quitar marca</button>
+  </div>
+</div>
+
+<div class="overlay" id="colorOverlay">
+  <div class="color-sheet">
+    <div class="color-sheet-header">
+      <span class="cur-swatch" id="colorCurSwatch"></span>
+      <span class="label" id="colorCurLabel"></span>
+      <button class="close-btn" id="colorCloseBtn">&times;</button>
+    </div>
+    <div class="palette-grid" id="paletteGrid"></div>
+    <div class="custom-color-row">
+      <label for="customColorInput">O elige un color exacto</label>
+      <input type="color" id="customColorInput">
+    </div>
+  </div>
+</div>
+
+<script>
+  const CATEGORIES = [
+    { id: "manana",        label: "Turno de mañana",   color: "#FFC107", text: "#1A1A1A" },
+    { id: "tarde",         label: "Turno de tarde",    color: "#FF6B35", text: "#FFFFFF" },
+    { id: "libre",         label: "Día libre",         color: "#4CAF50", text: "#FFFFFF" },
+    { id: "finde",         label: "Fin de semana",     color: "#3F51B5", text: "#FFFFFF" },
+    { id: "vacaciones",    label: "Vacaciones",        color: "#00BCD4", text: "#1A1A1A" },
+    { id: "compensaciones",label: "Compensaciones",    color: "#9C27B0", text: "#FFFFFF" },
+    { id: "asuntos",       label: "Asuntos particulares", color: "#E91E63", text: "#FFFFFF" },
+    { id: "permisos",      label: "Permisos",          color: "#795548", text: "#FFFFFF" },
+    { id: "bajas",         label: "Bajas",             color: "#212121", text: "#FFFFFF" },
+  ];
+
+  const MESES = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+  const DIAS = ["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
+  const STORAGE_KEY = "turnos-app-marks";
+  const COLORS_KEY = "turnos-app-colors";
+
+  // Paleta amplia y muy variada para personalizar cada categoría
+  const PALETTE = [
+    "#F44336","#E91E63","#D81B60","#C2185B","#9C27B0","#7B1FA2",
+    "#673AB7","#5E35B1","#3F51B5","#3949AB","#2196F3","#1976D2",
+    "#03A9F4","#0288D1","#00BCD4","#0097A7","#009688","#00796B",
+    "#4CAF50","#388E3C","#8BC34A","#689F38","#CDDC39","#AFB42B",
+    "#FFEB3B","#FBC02D","#FFC107","#FFA000","#FF9800","#F57C00",
+    "#FF6B35","#FF5722","#E64A19","#795548","#5D4037","#607D8B",
+    "#455A64","#212121","#37474F","#9E9E9E",
+  ];
+
+  function loadMarks() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) {
+      return {};
+    }
+  }
+  function saveMarks(marks) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(marks)); } catch (e) {}
+  }
+
+  function loadCustomColors() {
+    try {
+      const raw = localStorage.getItem(COLORS_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) {
+      return {};
+    }
+  }
+  function saveCustomColors(colors) {
+    try { localStorage.setItem(COLORS_KEY, JSON.stringify(colors)); } catch (e) {}
+  }
+
+  function getContrastText(hex) {
+    const c = hex.replace("#", "");
+    const r = parseInt(c.substring(0, 2), 16);
+    const g = parseInt(c.substring(2, 4), 16);
+    const b = parseInt(c.substring(4, 6), 16);
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    return luminance > 0.6 ? "#1A1A1A" : "#FFFFFF";
+  }
+
+  let customColors = loadCustomColors();
+
+  function getColor(catId) {
+    return customColors[catId] || getCatById(catId).color;
+  }
+  function getTextColor(catId) {
+    return getContrastText(getColor(catId));
+  }
+
+  let marks = loadMarks();
+  const now = new Date();
+  let current = { year: now.getFullYear(), month: now.getMonth() };
+  let selectedDay = null;
+
+  function getCatById(id) { return CATEGORIES.find(c => c.id === id); }
+  function dateKey(year, month, day) {
+    return `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+  }
+  function todayKey() {
+    const t = new Date();
+    return dateKey(t.getFullYear(), t.getMonth(), t.getDate());
+  }
+
+  function renderLegend() {
+    const counts = {};
+    CATEGORIES.forEach(c => counts[c.id] = 0);
+    Object.keys(marks).forEach(key => {
+      const [y, m] = key.split("-").map(Number);
+      if (y === current.year && (m - 1) === current.month) {
+        counts[marks[key]] = (counts[marks[key]] || 0) + 1;
+      }
+    });
+
+    const legendGrid = document.getElementById("legendGrid");
+    legendGrid.innerHTML = "";
+    CATEGORIES.forEach(c => {
+      const item = document.createElement("div");
+      item.className = "legend-item";
+      item.title = "Toca para cambiar el color";
+      item.innerHTML = `
+        <span class="swatch" style="background:${getColor(c.id)}"></span>
+        <span class="legend-row">
+          <span>${c.label}</span>
+          <span class="legend-count">${counts[c.id] || 0}</span>
+        </span>
+      `;
+      item.addEventListener("click", () => openColorPicker(c.id));
+      legendGrid.appendChild(item);
+    });
+  }
+
+  function renderTotals() {
+    const counts = {};
+    CATEGORIES.forEach(c => counts[c.id] = 0);
+    Object.values(marks).forEach(catId => {
+      if (counts[catId] !== undefined) counts[catId] += 1;
+    });
+
+    const totalsGrid = document.getElementById("totalsGrid");
+    totalsGrid.innerHTML = "";
+    CATEGORIES.forEach(c => {
+      const card = document.createElement("div");
+      card.className = "total-card";
+      card.innerHTML = `
+        <span class="swatch" style="background:${getColor(c.id)}"></span>
+        <span class="total-info">
+          <span class="total-label">${c.label}</span>
+          <span class="total-count">${counts[c.id] || 0}</span>
+        </span>
+      `;
+      totalsGrid.appendChild(card);
+    });
+  }
+
+  function renderCalendar() {
+    document.getElementById("monthTitle").textContent = `${MESES[current.month]} ${current.year}`;
+
+    const firstOfMonth = new Date(current.year, current.month, 1);
+    const jsDay = firstOfMonth.getDay();
+    const leadingBlanks = (jsDay + 6) % 7;
+    const daysInMonth = new Date(current.year, current.month + 1, 0).getDate();
+
+    const grid = document.getElementById("calendarGrid");
+    grid.innerHTML = "";
+
+    for (let i = 0; i < leadingBlanks; i++) {
+      const empty = document.createElement("div");
+      empty.className = "day empty";
+      grid.appendChild(empty);
+    }
+
+    const tKey = todayKey();
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const key = dateKey(current.year, current.month, d);
+      const cat = marks[key] ? getCatById(marks[key]) : null;
+      const btn = document.createElement("button");
+      btn.className = "day" + (key === tKey ? " today" : "");
+      btn.textContent = d;
+      if (cat) {
+        const col = getColor(cat.id);
+        btn.style.background = col;
+        btn.style.color = getTextColor(cat.id);
+        btn.style.borderColor = col;
+      }
+      btn.addEventListener("click", () => openDay(d));
+      grid.appendChild(btn);
+    }
+
+    const totalCells = leadingBlanks + daysInMonth;
+    const trailing = (7 - (totalCells % 7)) % 7;
+    for (let i = 0; i < trailing; i++) {
+      const empty = document.createElement("div");
+      empty.className = "day empty";
+      grid.appendChild(empty);
+    }
+
+    renderLegend();
+    renderTotals();
+  }
+
+  function openDay(day) {
+    selectedDay = dateKey(current.year, current.month, day);
+    const dateObj = new Date(current.year, current.month, day);
+    document.getElementById("sheetDate").textContent =
+      `${day} de ${MESES[current.month]}`;
+
+    const catGrid = document.getElementById("catGrid");
+    catGrid.innerHTML = "";
+    CATEGORIES.forEach(c => {
+      const btn = document.createElement("button");
+      btn.className = "cat-btn";
+      btn.style.background = getColor(c.id);
+      btn.style.color = getTextColor(c.id);
+      btn.textContent = c.label;
+      btn.addEventListener("click", () => applyCategory(c.id));
+      catGrid.appendChild(btn);
+    });
+
+    const clearBtn = document.getElementById("clearBtn");
+    clearBtn.classList.toggle("show", !!marks[selectedDay]);
+
+    document.getElementById("overlay").classList.add("open");
+  }
+
+  function closeSheet() {
+    document.getElementById("overlay").classList.remove("open");
+    selectedDay = null;
+  }
+
+  function applyCategory(catId) {
+    if (!selectedDay) return;
+    marks[selectedDay] = catId;
+    saveMarks(marks);
+    closeSheet();
+    renderCalendar();
+  }
+
+  function clearDay() {
+    if (!selectedDay) return;
+    delete marks[selectedDay];
+    saveMarks(marks);
+    closeSheet();
+    renderCalendar();
+  }
+
+  let pickerCatId = null;
+
+  function openColorPicker(catId) {
+    pickerCatId = catId;
+    const cat = getCatById(catId);
+    const curColor = getColor(catId);
+
+    document.getElementById("colorCurSwatch").style.background = curColor;
+    document.getElementById("colorCurLabel").textContent = cat.label;
+    document.getElementById("customColorInput").value = curColor;
+
+    const grid = document.getElementById("paletteGrid");
+    grid.innerHTML = "";
+    PALETTE.forEach(hex => {
+      const sw = document.createElement("button");
+      sw.className = "palette-swatch" + (hex.toLowerCase() === curColor.toLowerCase() ? " selected" : "");
+      sw.style.background = hex;
+      sw.addEventListener("click", () => chooseColor(hex));
+      grid.appendChild(sw);
+    });
+
+    document.getElementById("colorOverlay").classList.add("open");
+  }
+
+  function closeColorPicker() {
+    document.getElementById("colorOverlay").classList.remove("open");
+    pickerCatId = null;
+  }
+
+  function chooseColor(hex) {
+    if (!pickerCatId) return;
+    customColors[pickerCatId] = hex;
+    saveCustomColors(customColors);
+    closeColorPicker();
+    renderCalendar();
+  }
+
+  document.getElementById("colorCloseBtn").addEventListener("click", closeColorPicker);
+  document.getElementById("colorOverlay").addEventListener("click", (e) => {
+    if (e.target.id === "colorOverlay") closeColorPicker();
+  });
+  document.getElementById("customColorInput").addEventListener("input", (e) => {
+    chooseColor(e.target.value);
+  });
+
+  document.getElementById("prevBtn").addEventListener("click", () => {
+    current.month -= 1;
+    if (current.month < 0) { current.month = 11; current.year -= 1; }
+    renderCalendar();
+  });
+  document.getElementById("nextBtn").addEventListener("click", () => {
+    current.month += 1;
+    if (current.month > 11) { current.month = 0; current.year += 1; }
+    renderCalendar();
+  });
+  document.getElementById("todayBtn").addEventListener("click", () => {
+    const t = new Date();
+    current = { year: t.getFullYear(), month: t.getMonth() };
+    renderCalendar();
+  });
+  document.getElementById("closeBtn").addEventListener("click", closeSheet);
+  document.getElementById("clearBtn").addEventListener("click", clearDay);
+  document.getElementById("overlay").addEventListener("click", (e) => {
+    if (e.target.id === "overlay") closeSheet();
+  });
+
+  renderCalendar();
+</script>
+
+</body>
+</html>
